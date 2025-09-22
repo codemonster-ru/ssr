@@ -1,0 +1,17 @@
+{
+    "compilerOptions": {
+        "outDir": "dist",
+        "rootDir": "src",
+        "target": "ESNext",
+        "module": "NodeNext",
+        "moduleResolution": "NodeNext",
+        "esModuleInterop": true,
+        "strict": true,
+        "declaration": false
+    },
+    "include": ["./src"],
+    "exclude": ["./node_modules", "./dist", "./playgrounds"],
+    "ts-node": {
+        "esm": true
+    }
+}
