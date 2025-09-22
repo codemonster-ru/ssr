@@ -1,0 +1,30 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
+and this project uses [Semantic Versioning](https://semver.org/lang/en/).
+
+## [1.0.0] - 2025-09-21
+
+### Added
+
+-   Initial CLI implementation (`server`, `render`) for SSR.
+-   SSR pipeline with Vue support.
+-   Configuration via `.env` and CLI arguments.
+-   Support for `TEST_MODE` for dev-loading entries without port conflicts.
+-   Basic structure of unit and e2e tests (`test:unit`, `test:e2e`).
+-   CI (GitHub Actions) with unit/e2e separation and reporting artifacts.
+-   Fixture `entry-server.fixture.ts` for unit tests.
+
+### Changed
+
+-   CLI tests (`cli-render`, `cli-server`) now use random ports.
+-   Vitest config: disabled concurrent execution, increased timeout to 20s.
+-   Test structure split into `tests/unit` and `tests/e2e`.
+
+### Fixed
+
+-   Port conflicts during parallel tests.
+-   An error due to missing `.env` no longer blocks tests.
+-   Correct termination of the Vite dev server during tests.

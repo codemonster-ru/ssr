@@ -1,0 +1,66 @@
+name: Release
+
+on:
+    push:
+        tags:
+            - 'v*'
+
+permissions:
+    contents: write
+
+jobs:
+    release:
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v4
+
+            - name: Setup Node.js
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+                  registry-url: 'https://registry.npmjs.org'
+
+            - name: Install dependencies
+              run: npm ci
+
+            - name: Build package
+              run: npm run build
+
+            - name: Extract changelog entry
+              run: |
+                  VERSION=${GITHUB_REF_NAME#v}
+                  echo "Looking for version: $VERSION"
+                  awk "/## \\[$VERSION\\]/,/^## \\[/" CHANGELOG.md | sed '$d' > RELEASE_NOTES.md || true
+                  if [ ! -s RELEASE_NOTES.md ]; then
+                    echo "⚠️ No changelog entry found, using default message"
+                    echo "Release $VERSION" > RELEASE_NOTES.md
+                  fi
+                  cat RELEASE_NOTES.md
+
+            - name: Create GitHub Release (softprops)
+              id: release_softprops
+              continue-on-error: true
+              uses: softprops/action-gh-release@v1
+              with:
+                  body_path: RELEASE_NOTES.md
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+            - name: Create GitHub Release (official)
+              if: steps.release_softprops.outcome == 'failure'
+              uses: actions/create-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              with:
+                  tag_name: ${{ github.ref_name }}
+                  release_name: Release ${{ github.ref_name }}
+                  body_path: RELEASE_NOTES.md
+                  draft: false
+                  prerelease: false
+
+            - name: Publish to npm
+              run: npm publish --access public
+              env:
+                  NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
