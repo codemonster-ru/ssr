@@ -1,17 +1,34 @@
 {
     "name": "@codemonster-ru/ssr",
     "version": "1.0.0",
+    "description": "Universal SSR engine and CLI with Vite integration for modern JavaScript frameworks.",
+    "license": "MIT",
+    "author": {
+        "name": "Kirill Kolesnikov",
+        "email": "admin@codemonster.ru",
+        "url": "https://github.com/KolesnikovKirill"
+    },
     "type": "module",
     "bin": {
         "ssr": "dist/bin/cli.js"
     },
+    "files": [
+        "dist/",
+        "bin/",
+        "CHANGELOG.md",
+        "README.md",
+        "LICENSE"
+    ],
     "scripts": {
         "dev": "cross-env DEV_ROOT=./playgrounds/vue DEV_ENTRY_SERVER=./src/entry-server.ts tsx src/server.ts",
         "build": "tsc",
         "test": "vitest run",
         "test:unit": "vitest run tests/unit",
         "test:e2e": "vitest run tests/e2e",
-        "start": "node ./dist/bin/cli.js server"
+        "start": "node ./dist/bin/cli.js server",
+        "release:patch": "npm version patch && git push --follow-tags",
+        "release:minor": "npm version minor && git push --follow-tags",
+        "release:major": "npm version major && git push --follow-tags"
     },
     "dependencies": {
         "@codemonster-ru/env": "^1.1.0",
@@ -30,5 +47,16 @@
         "vitest": "^1.0.0",
         "execa": "^8.0.0",
         "node-fetch": "^3.3.2"
-    }
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/codemonster-ru/ssr.git"
+    },
+    "keywords": [
+        "ssr",
+        "nodejs",
+        "express",
+        "javascript",
+        "typescript"
+    ]
 }
