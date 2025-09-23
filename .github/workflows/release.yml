@@ -30,7 +30,6 @@ jobs:
               run: |
                   RAW_VERSION=${GITHUB_REF_NAME#v}
 
-                  # если версия заканчивается на "-test" → обрезаем
                   if [[ "$RAW_VERSION" == *"-test" ]]; then
                     VERSION=${RAW_VERSION%-test}
                   else
@@ -39,10 +38,8 @@ jobs:
 
                   echo "Looking for version: $VERSION (from tag $RAW_VERSION)"
 
-                  # Вырезаем блок changelog-а для версии
                   awk "/^## \\[$VERSION\\]/,/^## \\[/" CHANGELOG.md | sed '$d' > RELEASE_NOTES.md || true
 
-                  # Если это последняя версия в changelog
                   if [ ! -s RELEASE_NOTES.md ]; then
                     awk "/^## \\[$VERSION\\]/,0" CHANGELOG.md > RELEASE_NOTES.md || true
                   fi
