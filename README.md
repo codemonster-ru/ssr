@@ -1,5 +1,10 @@
 # @codemonster-ru/ssr
 
+[![npm
+version](https://img.shields.io/npm/v/@codemonster-ru/ssr.svg?style=flat-square)](https://www.npmjs.com/package/@codemonster-ru/ssr)
+[![Tests](https://github.com/codemonster-ru/ssr/actions/workflows/tests.yml/badge.svg)](https://github.com/codemonster-ru/ssr/actions)
+[![License](https://img.shields.io/npm/l/@codemonster-ru/ssr.svg?style=flat-square)](LICENSE)
+
 🚀 A universal SSR service for [Annabel Framework](https://github.com/codemonster-ru/annabel) **and standalone use**.
 
 Allows you to render Vue (and potentially React, Svelte, Solid, etc.) components on the server (Server-Side Rendering) and use them in PHP applications via SSR Bridge or as a separate Node.js SSR service.
