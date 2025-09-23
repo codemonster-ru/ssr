@@ -50,13 +50,23 @@
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/codemonster-ru/ssr.git"
+        "url": "git+https://github.com/codemonster-ru/ssr.git"
     },
+    "bugs": {
+        "url": "https://github.com/codemonster-ru/ssr/issues"
+    },
+    "homepage": "https://github.com/codemonster-ru/ssr#readme",
     "keywords": [
         "ssr",
-        "nodejs",
+        "server-side-rendering",
+        "vite",
         "express",
+        "cli",
+        "universal",
+        "nodejs",
         "javascript",
-        "typescript"
+        "typescript",
+        "vue",
+        "react"
     ]
 }
