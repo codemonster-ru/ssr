@@ -38,13 +38,8 @@ jobs:
 
                   echo "Looking for version: $VERSION (from tag $RAW_VERSION)"
 
-                  awk "/^## \\[$VERSION\\]/,/^## \\[/" CHANGELOG.md | sed '$d' > RELEASE_NOTES.md || true
+                  awk "/^## \\[$VERSION\\]/ {flag=1; next} /^## \\[/ {flag=0} flag {print}" CHANGELOG.md > RELEASE_NOTES.md
 
-                  if [ ! -s RELEASE_NOTES.md ]; then
-                    awk "/^## \\[$VERSION\\]/,0" CHANGELOG.md > RELEASE_NOTES.md || true
-                  fi
-
-                  # Fallback
                   if [ ! -s RELEASE_NOTES.md ]; then
                     echo "⚠️ No changelog entry found, using default message"
                     echo "Release $RAW_VERSION" > RELEASE_NOTES.md
