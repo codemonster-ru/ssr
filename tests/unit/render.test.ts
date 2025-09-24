@@ -1,6 +1,4 @@
 import { describe, it, expect, vi } from 'vitest';
-import { loadConfig } from '../../src/config';
-import { loadEntry } from '../../src/entry-loader';
 
 const serverEntryPath = 'playgrounds/vue/dist/server/entry-server.js';
 
@@ -11,6 +9,9 @@ vi.mock(serverEntryPath, () => {
         },
     };
 });
+
+import { loadConfig } from '../../src/config';
+import { loadEntry } from '../../src/entry-loader';
 
 describe('render (unit)', () => {
     it('renders with mock entry', async () => {
