@@ -1,6 +1,6 @@
 {
     "name": "@codemonster-ru/ssr",
-    "version": "1.0.5",
+    "version": "1.0.6",
     "description": "Universal SSR engine and CLI with Vite integration for modern JavaScript frameworks.",
     "license": "MIT",
     "author": {
