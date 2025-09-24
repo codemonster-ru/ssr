@@ -7,6 +7,12 @@ and this project uses [Semantic Versioning](https://semver.org/lang/en/).
 
 ## [Unreleased]
 
+## [1.0.3] - 2025-09-24
+
+### Added
+
+-   CLI: New `--mode` parameter (`development` | `production`), passed to `loadConfig`.
+
 ### Fixed
 
 -   Unit tests: stabilized with the correct `vi.mock` path, no longer require a real `dist`.
