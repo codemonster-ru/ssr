@@ -9,6 +9,7 @@ import fs from 'fs';
 const addCommonOptions = (y: any) =>
     y
         .option('mode', { type: 'string', choices: ['development', 'production'] })
+        .option('cliMode', { type: 'boolean' })
         .option('clientPath', { type: 'string' })
         .option('clientEntry', { type: 'string' })
         .option('serverEntry', { type: 'string' })

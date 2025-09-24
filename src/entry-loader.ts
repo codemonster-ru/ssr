@@ -1,4 +1,5 @@
 import path from 'path';
+import { createRequire } from 'module';
 import { loadConfig, SsrConfig } from './config.js';
 import { pathToFileURL } from 'url';
 
@@ -13,10 +14,16 @@ export const loadEntry = async (cfg: SsrConfig = loadConfig()): Promise<RenderFn
     return await loadEntryProd(cfg);
 };
 
+const require = createRequire(import.meta.url);
+
 const loadEntryDev = async (cfg: SsrConfig): Promise<RenderFnWithVite> => {
-    const { createServer } = await import('vite');
+    const root = cfg.DEV_ROOT ?? process.cwd();
+    const vitePath = require.resolve('vite', { paths: [root] });
+    const viteUrl = pathToFileURL(vitePath).href;
+    const viteModule = await import(viteUrl);
+    const { createServer } = viteModule as typeof import('vite');
     const vite = await createServer({
-        root: cfg.DEV_ROOT,
+        root: root,
         appType: 'custom',
         server: {
             middlewareMode: true,
@@ -24,10 +31,11 @@ const loadEntryDev = async (cfg: SsrConfig): Promise<RenderFnWithVite> => {
         },
     });
 
-    const entry = await vite.ssrLoadModule(cfg.DEV_ENTRY_SERVER);
+    let entryPath = normalizeForVite(cfg.DEV_ENTRY_SERVER, root);
+    const entry = await vite.ssrLoadModule(entryPath);
     const fn = normalizeEntry(entry, cfg.DEV_ENTRY_SERVER) as RenderFnWithVite;
 
-    if (process.env.TEST_MODE === 'true') {
+    if (process.env.TEST_MODE === 'true' || cfg.CLI_MODE) {
         await vite.close();
     } else {
         process.on('SIGINT', async () => {
@@ -64,4 +72,18 @@ const normalizeEntry = (entry: any, source: string) => {
     }
 
     throw new Error(`❌ Entry file ${source} must export a "render" function (found: ${Object.keys(entry)})`);
+};
+
+const normalizeForVite = (entryPath: string, root: string) => {
+    if (entryPath.startsWith('/')) {
+        return entryPath.replace(/\\/g, '/');
+    }
+
+    if (path.isAbsolute(entryPath)) {
+        const relative = path.relative(root, entryPath).replace(/\\/g, '/');
+
+        return '/' + relative;
+    }
+
+    return '/' + entryPath.replace(/\\/g, '/');
 };

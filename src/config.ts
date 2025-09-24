@@ -3,6 +3,7 @@ import { Env } from '@codemonster-ru/env';
 
 export interface SsrConfig {
     MODE: 'development' | 'production';
+    CLI_MODE: boolean;
     CLIENT_PATH: string;
     SERVER_ENTRY: string;
     MANIFEST_PATH: string;
@@ -30,6 +31,7 @@ const resolveMode = (value: any): 'development' | 'production' => {
 export function loadConfig(argv: any = {}): SsrConfig {
     return {
         MODE: resolveMode(argv.mode || env.get('MODE') || process.env.NODE_ENV || 'production'),
+        CLI_MODE: argv.cliMode || env.get('CLI_MODE') || false,
         CLIENT_PATH: path.resolve(process.cwd(), argv.clientPath || env.get('CLIENT_PATH', 'dist/client')),
         SERVER_ENTRY: path.resolve(
             process.cwd(),

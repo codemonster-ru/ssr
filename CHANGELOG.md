@@ -7,6 +7,17 @@ and this project uses [Semantic Versioning](https://semver.org/lang/en/).
 
 ## [Unreleased]
 
+## [1.0.6] - 2025-09-25
+
+### Added
+
+-   CLI: New `--cli_mode` parameter (boolean) passed to `loadConfig`.
+-   Load `vite.config` from `DEV_ROOT` of the user project (SSR always uses the application's own configuration).
+
+### Changed
+
+-   Normalization of `devEntryServer` paths and other entry parameters: now they are always converted to vite-compatible form (`/resources/...` instead of absolute Windows paths).
+
 ## [1.0.5] - 2025-09-24
 
 ### Fixed

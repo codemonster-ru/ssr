@@ -78,6 +78,7 @@ All parameters can be set via **CLI**, **.env** or directly via `loadConfig`.
 | Param                   | Default                       | Description                                                                |
 | ----------------------- | ----------------------------- | -------------------------------------------------------------------------- |
 | `MODE`                  | `production`                  | Development or production or test                                          |
+| `CLI_MODE`              | `false`                       | To complete SSR correctly in CLI                                           |
 | `CLIENT_PATH`           | `dist/client`                 | Path to client build (static files)                                        |
 | `SERVER_ENTRY`          | `dist/server/entry-server.js` | Path to server entry (SSR build)                                           |
 | `MANIFEST_PATH`         | `dist/client/manifest.json`   | Path to `manifest.json`                                                    |
