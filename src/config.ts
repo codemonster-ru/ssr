@@ -2,6 +2,7 @@ import path from 'path';
 import { Env } from '@codemonster-ru/env';
 
 export interface SsrConfig {
+    MODE: 'development' | 'production';
     CLIENT_PATH: string;
     SERVER_ENTRY: string;
     MANIFEST_PATH: string;
@@ -18,9 +19,17 @@ export interface SsrConfig {
 }
 
 const env = new Env();
+const resolveMode = (value: any): 'development' | 'production' => {
+    if (value === 'development' || value === 'dev' || value === 'test') {
+        return 'development';
+    }
+
+    return 'production';
+};
 
 export function loadConfig(argv: any = {}): SsrConfig {
     return {
+        MODE: resolveMode(argv.mode || env.get('MODE') || process.env.NODE_ENV || 'production'),
         CLIENT_PATH: path.resolve(process.cwd(), argv.clientPath || env.get('CLIENT_PATH', 'dist/client')),
         SERVER_ENTRY: path.resolve(
             process.cwd(),

@@ -6,7 +6,7 @@ export type RenderFn = (component: string, props: Record<string, any>) => Promis
 export type RenderFnWithVite = RenderFn & { vite?: any };
 
 export const loadEntry = async (cfg: SsrConfig = loadConfig()): Promise<RenderFnWithVite> => {
-    if (cfg.DEV_ROOT) {
+    if (cfg.MODE === 'development') {
         return await loadEntryDev(cfg);
     }
 
@@ -17,7 +17,7 @@ const loadEntryDev = async (cfg: SsrConfig): Promise<RenderFnWithVite> => {
     const { createServer } = await import('vite');
     const vite = await createServer({
         root: cfg.DEV_ROOT,
-        appType: process.env.TEST_MODE === 'true' ? 'custom' : 'spa',
+        appType: 'custom',
         server: {
             middlewareMode: true,
             hmr: process.env.TEST_MODE === 'true' ? false : true,
