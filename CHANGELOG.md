@@ -7,6 +7,13 @@ and this project uses [Semantic Versioning](https://semver.org/lang/en/).
 
 ## [Unreleased]
 
+## [1.0.5] - 2025-09-24
+
+### Fixed
+
+-   Expanded Vite peer dependency range from `^5.0.0` to `>=5.0.0 <8.0.0`.
+    This allows using the SSR package with Vite 5, 6, and 7 without dependency resolution errors.
+
 ## [1.0.4] - 2025-09-24
 
 ### Fixed
