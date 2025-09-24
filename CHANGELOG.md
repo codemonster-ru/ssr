@@ -7,6 +7,12 @@ and this project uses [Semantic Versioning](https://semver.org/lang/en/).
 
 ## [Unreleased]
 
+## [1.0.4] - 2025-09-24
+
+### Fixed
+
+-   Moved `vite` from `dependencies` to `peerDependencies` to ensure the project uses the same Vite instance as the consumer app. This prevents issues with `.vue` files being parsed by a different Vite version and fixes `module is not defined` errors during SSR.
+
 ## [1.0.3] - 2025-09-24
 
 ### Added
