@@ -9,7 +9,10 @@ and this project uses [Semantic Versioning](https://semver.org/lang/en/).
 
 ### Fixed
 
--   Unit tests: use `path.resolve` in `vi.mock` to ensure stable CI runs across OS.
+-   Unit tests: stabilized with the correct `vi.mock` path, no longer require a real `dist`.
+-   CI: `playgrounds/vue` is now built before unit and e2e tests.
+-   CI: Added dependency installation for `playgrounds/vue` via `npm install --prefix playgrounds/vue`.
+-   Fixed crashes in GitHub Actions due to missing dependencies and mismatched `package-lock.json` in the playground.
 
 ## [1.0.2] - 2025-09-24
 
