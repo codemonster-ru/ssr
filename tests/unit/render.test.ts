@@ -1,15 +1,14 @@
 import { describe, it, expect, vi } from 'vitest';
+import { loadConfig } from '../../src/config';
+import { loadEntry } from '../../src/entry-loader';
 
-vi.mock('playgrounds/vue/dist/server/entry-server.js', () => {
+vi.mock('file://' + process.cwd() + '/playgrounds/vue/dist/server/entry-server.js', () => {
     return {
         render: async (component: string, props: Record<string, any>) => {
             return `<div>Unit render OK: ${component} - ${props.message}</div>`;
         },
     };
 });
-
-import { loadConfig } from '../../src/config';
-import { loadEntry } from '../../src/entry-loader';
 
 describe('render (unit)', () => {
     it('renders with mock entry', async () => {

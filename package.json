@@ -22,7 +22,11 @@
     "scripts": {
         "dev": "cross-env DEV_ROOT=./playgrounds/vue DEV_ENTRY_SERVER=./src/entry-server.ts tsx src/server.ts",
         "build": "tsc",
+        "build:playground": "npm run build --prefix playgrounds/vue",
+        "pretest:unit": "npm run build:playground",
+        "pretest:e2e": "npm run build:playground",
         "test": "vitest run",
+        "test:ci": "npm run build:playground && vitest run",
         "test:unit": "vitest run tests/unit",
         "test:e2e": "vitest run tests/e2e",
         "start": "node ./dist/bin/cli.js server",
