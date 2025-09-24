@@ -1,10 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
-import { loadConfig } from '../../src/config';
-import { loadEntry } from '../../src/entry-loader';
 import path from 'path';
 
-// ⚠️ IMPORTANT: We use path.resolve to ensure the path matches the one that entry-loader.ts actually resolves via import(pathToFileURL).
-// If you specify a relative path ('../../playgrounds/...'), the mock will not work in CI.
 const mockPath = path.resolve(__dirname, '../../playgrounds/vue/dist/server/entry-server.js');
 
 vi.mock(mockPath, () => {
@@ -14,6 +10,9 @@ vi.mock(mockPath, () => {
         },
     };
 });
+
+import { loadConfig } from '../../src/config';
+import { loadEntry } from '../../src/entry-loader';
 
 describe('render (unit)', () => {
     it('renders with mock entry', async () => {
