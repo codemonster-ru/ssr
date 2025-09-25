@@ -1,5 +1,5 @@
 {
-    "name": "@codemonster-ru/ssr-playground",
+    "name": "@codemonster-ru/ssr-service-playground",
     "private": true,
     "type": "module",
     "scripts": {

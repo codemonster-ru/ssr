@@ -16,9 +16,9 @@ app.post('/render', async (req, res) => {
     } catch (e) {
         console.error(e);
 
-        res.status(500).send('@codemonster-ru/ssr render error');
+        res.status(500).send('@codemonster-ru/ssr-service render error');
     }
 });
 app.listen(cfg.PORT, () => {
-    console.log(`✅ @codemonster-ru/ssr running on http://127.0.0.1:${cfg.PORT}`);
+    console.log(`✅ @codemonster-ru/ssr-service running on http://127.0.0.1:${cfg.PORT}`);
 });

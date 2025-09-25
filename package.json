@@ -1,5 +1,5 @@
 {
-    "name": "@codemonster-ru/ssr",
+    "name": "@codemonster-ru/ssr-service",
     "version": "1.0.6",
     "description": "Universal SSR engine and CLI with Vite integration for modern JavaScript frameworks.",
     "license": "MIT",

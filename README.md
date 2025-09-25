@@ -1,9 +1,9 @@
-# @codemonster-ru/ssr
+# @codemonster-ru/ssr-service
 
 [![npm
-version](https://img.shields.io/npm/v/@codemonster-ru/ssr.svg?style=flat-square)](https://www.npmjs.com/package/@codemonster-ru/ssr)
+version](https://img.shields.io/npm/v/@codemonster-ru/ssr-service.svg?style=flat-square)](https://www.npmjs.com/package/@codemonster-ru/ssr-service)
 [![Tests](https://github.com/codemonster-ru/ssr/actions/workflows/tests.yml/badge.svg)](https://github.com/codemonster-ru/ssr/actions)
-[![License](https://img.shields.io/npm/l/@codemonster-ru/ssr.svg?style=flat-square)](LICENSE)
+[![License](https://img.shields.io/npm/l/@codemonster-ru/ssr-service.svg?style=flat-square)](LICENSE)
 
 🚀 A universal SSR service for [Annabel Framework](https://github.com/codemonster-ru/annabel) **and standalone use**.
 
@@ -27,13 +27,13 @@ Allows you to render Vue (and potentially React, Svelte, Solid, etc.) components
 Global:
 
 ```bash
-npm install -g @codemonster-ru/ssr
+npm install -g @codemonster-ru/ssr-service
 ```
 
 Or locally in the project:
 
 ```bash
-npm install @codemonster-ru/ssr
+npm install @codemonster-ru/ssr-service
 ```
 
 ## 🚀 Launch
