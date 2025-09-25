@@ -7,6 +7,21 @@ and this project uses [Semantic Versioning](https://semver.org/lang/en/).
 
 ## [Unreleased]
 
+## [1.1.0] - 2025-09-26
+
+### Changed
+
+-   **Renamed package**: `@codemonster-ru/ssr` → `@codemonster-ru/ssr-service`
+
+### Notes
+
+-   The old package [`@codemonster-ru/ssr`](https://www.npmjs.com/package/@codemonster-ru/ssr) has been **deprecated**.
+-   Please update your dependencies:
+    ```bash
+    npm uninstall @codemonster-ru/ssr
+    npm install @codemonster-ru/ssr-service
+    ```
+
 ## [1.0.6] - 2025-09-25
 
 ### Added
